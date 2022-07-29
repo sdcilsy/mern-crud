@@ -1,0 +1,13 @@
+version: '3.8'
+
+services:
+  db:
+    build:
+      context: ./database
+      dockerfile: Dockerfile
+  
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    
