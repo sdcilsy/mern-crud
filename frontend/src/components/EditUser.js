@@ -18,7 +18,7 @@ const EditUser = () => {
   const updateUser = async (e) => {
     e.preventDefault();
     try {
-      await axios.patch(`http://localhost:5000/users/${id}`, {
+      await axios.patch(`http://13.215.224.118:5000/users/${id}`, {
         name,
         email,
         gender,
