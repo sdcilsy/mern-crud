@@ -22,16 +22,16 @@ pipeline {
 
                 echo "Begin Build"
                 
-                if (env.BRANCH_NAME == "development")
+                if (env.BRANCH_NAME == "staging")
                 
                 { 
-                sh "docker build -t arizalsandi/landingpage:dev-$BUILD_NUMBER . "
-                sh "docker push arizalsandi/landingpage:dev-$BUILD_NUMBER"
+                sh "docker build -t arizalsandi/cilist:stg-$BUILD_NUMBER . "
+                sh "docker push arizalsandi/cilist:stg-$BUILD_NUMBER"
                 }
                 else
                 { 
-                sh "docker build -t arizalsandi/landingpage:master-$BUILD_NUMBER . "
-                sh "docker push arizalsandi/landingpage:master-$BUILD_NUMBER"}
+                sh "docker build -t arizalsandi/cilist:master-$BUILD_NUMBER . "
+                sh "docker push arizalsandi/cilist:master-$BUILD_NUMBER"}
                 }
               }
             }
@@ -45,13 +45,13 @@ pipeline {
 
                 if (env.BRANCH_NAME == "development")
                 {
-                sh "kubectl set image deployment/landingpage landingpage=arizalsandi/landingpage:dev-$BUILD_NUMBER -n app-landingpage"
+                sh "kubectl set image deployment/cilist cilist=arizalsandi/cilist:stg-$BUILD_NUMBER -n stg-app-cilist"
                 sh "docker image rmi arizalsandi/landingpage:dev-$BUILD_NUMBER"
                 }
                 else
                 {
-                sh "kubectl set image deployment/landingpage landingpage=arizalsandi/landingpage:master-$BUILD_NUMBER -n app-landingpage"
-                sh "docker image rmi arizalsandi/landingpage:master-$BUILD_NUMBER"
+                sh "kubectl set image deployment/cilist cilist=arizalsandi/cilist:master-$BUILD_NUMBER -n prd-app-cilist"
+                sh "docker image rmi arizalsandi/cilist:master-$BUILD_NUMBER"
                 }
               }
             }
