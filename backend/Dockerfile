@@ -1,20 +1,13 @@
-#  Dockerfile for Node Express Backend
+FROM node:lts-gallium
 
-FROM node:10.16-alpine
+ENV NODE_ENV=development
 
-# Create App Directory
-RUN mkdir -p /usr/src/app
-WORKDIR /usr/src/app
+WORKDIR /app
 
-# Install Dependencies
-COPY package*.json ./
+COPY . /app
 
-RUN npm install --silent
+RUN npm install
 
-# Copy app source code
-COPY . .
-
-# Exports
 EXPOSE 5000
 
-CMD ["npm","start"]
+CMD [ "npm", "start" ]

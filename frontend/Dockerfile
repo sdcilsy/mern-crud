@@ -1,14 +1,13 @@
-FROM node:10.16-alpine AS builder
+FROM node:lts-gallium
 
-COPY package*.json ./
-RUN npm install --silent
-COPY . .
-RUN npm run build
+ENV NODE_ENV=development
 
-FROM nginx:stable-alpine
+WORKDIR /app
 
-COPY --from=builder build /usr/share/nginx/html
-COPY nginx.conf /etc/nginx/nginx.conf
+COPY . /app
 
-EXPOSE 80
-CMD ["nginx", "-g", "daemon off;"]
+RUN npm install
+
+EXPOSE 3000
+
+CMD [ "npm", "start" ]
