@@ -2,7 +2,7 @@ properties([pipelineTriggers([githubPush()])])
 pipeline {
     agent any
     stages {
-        stage('Testing SAST') {
+        stage('SAST') {
         agent { label "agent1" } // Define which agent you want to run the pipeline
             steps {
               // Test menggunakan Sonarqube
@@ -14,7 +14,7 @@ pipeline {
                 } 
               }
             }
-        stage('Build') {
+        stage('Build Image') {
         agent { label "agent1" } // Define which agent you want to run the pipeline
             steps {
               // Build Image
@@ -39,7 +39,7 @@ pipeline {
                 }
               }
             }
-        stage('Deploy') {
+        stage('Deploy Image') {
         agent { label "agent1" }  // Define which agent you want to run the pipeline
             steps {
               // Deploy to Kubernetes
