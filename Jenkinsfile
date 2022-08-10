@@ -2,7 +2,7 @@ properties([pipelineTriggers([githubPush()])])
 pipeline {
     agent any
     stages {
-        stage('Testing') {
+        stage('Testing SAST') {
         agent { label "agent1" } // Define which agent you want to run the pipeline
             steps {
               // Test menggunakan Sonarqube
@@ -25,13 +25,17 @@ pipeline {
                 if (env.BRANCH_NAME == "staging")
                 
                 { 
-                sh "docker build -t arizalsandi/cilist:stg-$BUILD_NUMBER . "
-                sh "docker push arizalsandi/cilist:stg-$BUILD_NUMBER"
+                sh "docker build -t arizalsandi/cilist-client:stg-$BUILD_NUMBER frontend/. "
+                sh "docker build -t arizalsandi/cilist-server:stg-$BUILD_NUMBER backend/. "
+                sh "docker push arizalsandi/cilist-client:stg-$BUILD_NUMBER"
+                sh "docker push arizalsandi/cilist-server:stg-$BUILD_NUMBER"
                 }
                 else
                 { 
-                sh "docker build -t arizalsandi/cilist:master-$BUILD_NUMBER . "
-                sh "docker push arizalsandi/cilist:master-$BUILD_NUMBER"}
+                sh "docker build -t arizalsandi/cilist-client:master-$BUILD_NUMBER frontend/. "
+                sh "docker build -t arizalsandi/cilist-server:master-$BUILD_NUMBER backend/. "
+                sh "docker push arizalsandi/cilist-client:master-$BUILD_NUMBER"
+                sh "docker push arizalsandi/cilist-server:master-$BUILD_NUMBER"
                 }
               }
             }
@@ -45,13 +49,17 @@ pipeline {
 
                 if (env.BRANCH_NAME == "development")
                 {
-                sh "kubectl set image deployment/cilist cilist=arizalsandi/cilist:stg-$BUILD_NUMBER -n stg-app-cilist"
-                sh "docker image rmi arizalsandi/landingpage:dev-$BUILD_NUMBER"
+                sh "kubectl set image deployment/client-app client-app=arizalsandi/cilist-client:stg-$BUILD_NUMBER -n staging"
+                sh "kubectl set image deployment/server-app server-app=arizalsandi/cilist-server:stg-$BUILD_NUMBER -n staging"
+                sh "docker image rmi arizalsandi/cilist-client:stg-$BUILD_NUMBER"
+                sh "docker image rmi arizalsandi/cilist-server:stg-$BUILD_NUMBER"
                 }
                 else
                 {
-                sh "kubectl set image deployment/cilist cilist=arizalsandi/cilist:master-$BUILD_NUMBER -n prd-app-cilist"
-                sh "docker image rmi arizalsandi/cilist:master-$BUILD_NUMBER"
+                sh "kubectl set image deployment/client-app client-app=arizalsandi/cilist-client:master-$BUILD_NUMBER -n production"
+                sh "kubectl set image deployment/server-app client-app=arizalsandi/cilist-server:master-$BUILD_NUMBER -n production"
+                sh "docker image rmi arizalsandi/cilist-client:master-$BUILD_NUMBER"
+                sh "docker image rmi arizalsandi/cilist-server:master-$BUILD_NUMBER"
                 }
               }
             }
