@@ -47,7 +47,7 @@ pipeline {
                 
                 echo "Begin to Deploy" 
 
-                if (env.BRANCH_NAME == "development")
+                if (env.BRANCH_NAME == "staging")
                 {
                 sh "kubectl set image deployment/client-app client-app=arizalsandi/cilist-client:stg-$BUILD_NUMBER -n staging"
                 sh "kubectl set image deployment/server-app server-app=arizalsandi/cilist-server:stg-$BUILD_NUMBER -n staging"
