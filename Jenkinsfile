@@ -19,11 +19,8 @@ pipeline {
             steps {
               // Build Image
                 script { 
-
                 echo "Begin Build"
-                
                 if (env.BRANCH_NAME == "staging")
-                
                 { 
                 sh "docker build -t arizalsandi/cilist-client:stg-$BUILD_NUMBER frontend/. "
                 sh "docker build -t arizalsandi/cilist-server:stg-$BUILD_NUMBER backend/. "
@@ -66,4 +63,3 @@ pipeline {
           }
         }
       }
-}
