@@ -55,7 +55,7 @@ pipeline {
                 else
                 {
                 sh "kubectl set image deployment/client-app client-app=arizalsandi/cilist-client:master-$BUILD_NUMBER -n production"
-                sh "kubectl set image deployment/server-app client-app=arizalsandi/cilist-server:master-$BUILD_NUMBER -n production"
+                sh "kubectl set image deployment/server-app server-app=arizalsandi/cilist-server:master-$BUILD_NUMBER -n production"
                 sh "docker image rmi arizalsandi/cilist-client:master-$BUILD_NUMBER"
                 sh "docker image rmi arizalsandi/cilist-server:master-$BUILD_NUMBER"
                 }
