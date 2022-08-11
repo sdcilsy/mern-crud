@@ -14,7 +14,7 @@ pipeline {
                 } 
               }
             }
-        stage('Build Image') {
+        stage('Build') {
         agent { label "agent1" } // Define which agent you want to run the pipeline
             steps {
               // Build Image
@@ -39,7 +39,7 @@ pipeline {
                 }
               }
             }
-        stage('Deploy Image') {
+        stage('Deploy') {
         agent { label "agent1" }  // Define which agent you want to run the pipeline
             steps {
               // Deploy to Kubernetes
