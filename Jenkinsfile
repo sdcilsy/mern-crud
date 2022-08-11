@@ -36,6 +36,7 @@ pipeline {
                 }
               }
             }
+          }
         stage('Deploy') {
         agent { label "agent1" }  // Define which agent you want to run the pipeline
             steps {
@@ -63,4 +64,4 @@ pipeline {
           }
         }
       }
-    }
+    
