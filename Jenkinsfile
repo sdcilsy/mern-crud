@@ -21,9 +21,9 @@ pipeline {
                 script { 
                 echo "Begin Build"
                 discordSend description: 'Jenkins Pipeline Build', 
-            footer: 'Start Build', link: env.BUILD_URL, result: currentBuild.currentResult, 
-            title: '', 
-            webhookURL: 'https://discord.com/api/webhooks/996050992539910314/zFBwffvteSg4pMuCooQdw-_RfD5gOHE6uu9VkIQl_VKw8m2GbbOH0ediI3WeYdI_8Soe'
+            footer: "Start Build", link: "${env.BUILD_URL}", result: "$currentBuild.currentResult", 
+            title: "$env.JOB_NAME", 
+            webhookURL: "https://discord.com/api/webhooks/996050992539910314/zFBwffvteSg4pMuCooQdw-_RfD5gOHE6uu9VkIQl_VKw8m2GbbOH0ediI3WeYdI_8Soe"
                 if (env.BRANCH_NAME == "staging")
                 { 
                 sh "docker build -t arizalsandi/cilist-client:stg-$BUILD_NUMBER frontend/. "
