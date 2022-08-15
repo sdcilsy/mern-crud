@@ -43,7 +43,6 @@ pipeline {
                 sh "docker push arizalsandi/cilist-client:master-$BUILD_NUMBER"
                 sh "docker push arizalsandi/cilist-server:master-$BUILD_NUMBER"
                 }
-                discordSend description: 'Build Sucessfull !'
               }
             }
           }
@@ -76,7 +75,6 @@ pipeline {
                 sh "docker image rmi arizalsandi/cilist-client:master-$BUILD_NUMBER"
                 sh "docker image rmi arizalsandi/cilist-server:master-$BUILD_NUMBER"
                 }
-                discordSend description: 'Deploy Successfull !'
               }
             }
           }
