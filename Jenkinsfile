@@ -23,7 +23,7 @@ pipeline {
                   discordSend description: 'Jenkins Pipeline Build', 
                   footer: "Start Build ${env.JOB_BASE_NAME} (build #${BUILD_NUMBER})", 
                   link: "${env.BUILD_URL}", 
-                  result: "${env.currentBuild.currentResult}", 
+                  result: "${currentBuild.currentResult}", 
                   title: "${env.JOB_NAME}",
                   webhookURL: "${DISCORD_WEBHOOK}"
                 if (env.BRANCH_NAME == "staging")
