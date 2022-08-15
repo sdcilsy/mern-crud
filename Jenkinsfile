@@ -19,13 +19,16 @@ pipeline {
             steps {
               // Build Image
                 script { 
+
                 echo "Begin Build"
-                  discordSend description: 'Jenkins Pipeline Build', 
-                  footer: "Start Build ${env.JOB_BASE_NAME} (build #${BUILD_NUMBER})", 
-                  link: "${env.BUILD_URL}", 
-                  result: "${currentBuild.currentResult}", 
-                  title: "${env.JOB_NAME}",
-                  webhookURL: "${DISCORD_WEBHOOK}"
+
+                discordSend description: 'Jenkins Pipeline Build', 
+                footer: "Start Build $env.JOB_BASE_NAME (build #$BUILD_NUMBER)", 
+                link: "$env.BUILD_URL", 
+                result: "$currentBuild.currentResult", 
+                title: "$env.JOB_NAME",
+                webhookURL: "$DISCORD_WEBHOOK"
+
                 if (env.BRANCH_NAME == "staging")
                 { 
                 sh "docker build -t arizalsandi/cilist-client:stg-$BUILD_NUMBER frontend/. "
@@ -40,6 +43,7 @@ pipeline {
                 sh "docker push arizalsandi/cilist-client:master-$BUILD_NUMBER"
                 sh "docker push arizalsandi/cilist-server:master-$BUILD_NUMBER"
                 }
+                discordSend description: 'Build Sucessfull !'
               }
             }
           }
@@ -49,7 +53,14 @@ pipeline {
               // Deploy to Kubernetes
                 script { 
                 
-                echo "Begin to Deploy" 
+                echo "Begin to Deploy"
+
+                discordSend description: 'Jenkins Pipeline Deploy', 
+                footer: "Start Deploy $env.JOB_BASE_NAME (deploy #$BUILD_NUMBER)", 
+                link: "$env.BUILD_URL", 
+                result: "$currentBuild.currentResult", 
+                title: "$env.JOB_NAME",
+                webhookURL: "$DISCORD_WEBHOOK"
 
                 if (env.BRANCH_NAME == "staging")
                 {
@@ -65,6 +76,7 @@ pipeline {
                 sh "docker image rmi arizalsandi/cilist-client:master-$BUILD_NUMBER"
                 sh "docker image rmi arizalsandi/cilist-server:master-$BUILD_NUMBER"
                 }
+                discordSend description: 'Deploy Successfull !'
               }
             }
           }
