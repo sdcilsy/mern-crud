@@ -21,9 +21,9 @@ pipeline {
                 script { 
                 echo "Begin Build"
                   discordSend description: 'Jenkins Pipeline Build', 
-                  footer: "Start Build", 
+                  footer: "Start Build ${env.JOB_BASE_NAME} (build #${BUILD_NUMBER})", 
                   link: "${env.BUILD_URL}", 
-                  result: "${currentBuild.currentResult}", 
+                  result: "${env.currentBuild.currentResult}", 
                   title: "${env.JOB_NAME}",
                   webhookURL: "${DISCORD_WEBHOOK}"
                 if (env.BRANCH_NAME == "staging")
