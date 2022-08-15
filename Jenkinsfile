@@ -25,7 +25,6 @@ pipeline {
                   link: "${env.BUILD_URL}", 
                   result: "${currentBuild.currentResult}", 
                   title: "${env.JOB_NAME}",
-                  successful: "${currentBuild.resultIsBetterOrEqualTo('SUCCESS')}"
                   webhookURL: "${DISCORD_WEBHOOK}"
                 if (env.BRANCH_NAME == "staging")
                 { 
