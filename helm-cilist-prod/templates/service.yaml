@@ -1,0 +1,23 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name : {{ .Values.nameFrontend}}
+  namespace: {{ .Values.namespace }}
+spec:
+  selector: 
+    app: {{ .Values.nameFrontend}}
+  type: ClusterIP
+  ports:
+    - port: {{ .Values.portFrontend}}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name : {{ .Values.nameBackend}}
+  namespace: {{ .Values.namespace }}
+spec:
+  selector: 
+    app: {{ .Values.nameBackend}}
+  type: ClusterIP
+  ports:
+    - port: {{ .Values.portBackend}}

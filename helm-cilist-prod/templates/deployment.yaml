@@ -1,0 +1,45 @@
+apiVersion: apps/v1
+kind: Deployment 
+metadata:
+  name: {{ .Values.nameFrontend }}
+  namespace: {{ .Values.namespace }}
+  labels:
+    app: {{ .Values.nameFrontend }}
+spec:
+  selector:
+    matchLabels:
+      app: {{ .Values.nameFrontend }}
+  template:
+    metadata: 
+      labels:
+        app: {{ .Values.nameFrontend }}
+    spec:
+      containers:
+        - name: {{ .Values.nameFrontend}}
+          image: {{ .Values.imageFrontend}}
+          env:
+          - name: {{ .Values.envfe }}
+            value: {{ .Values.envBeValue }}
+---
+apiVersion: apps/v1
+kind: Deployment 
+metadata:
+  name: {{ .Values.nameBackend }}
+  namespace: {{ .Values.namespace }}
+  labels:
+    app: {{ .Values.nameBackend }}
+spec:
+  selector:
+    matchLabels:
+      app: {{ .Values.nameBackend }}
+  template:
+    metadata: 
+      labels:
+        app: {{ .Values.nameBackend }}
+    spec:
+      containers:
+        - name: {{ .Values.nameBackend}}
+          image: {{ .Values.imageBackend}}
+          env:
+          - name: {{ .Values.envbe }}
+            value: {{ .Values.envBeValue }}

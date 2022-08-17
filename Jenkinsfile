@@ -22,16 +22,20 @@ pipeline {
 
                 echo "Begin Build"
                 
-                if (env.BRANCH_NAME == "staging")
+                if (env.BRANCH_NAME == "stagging")
                 
                 { 
-                sh "docker build -t harjay88/cilist:stg-$BUILD_NUMBER . "
-                sh "docker push harjay88//cilist:stg-$BUILD_NUMBER"
+                sh "docker build -t harjay88/cilistfe-stg:$BUILD_NUMBER frontend/. "
+                sh "docker build -t harjay88/cilistbe-stg:$BUILD_NUMBER backend/. "
+                sh "docker push harjay88/cilistfe-stg:$BUILD_NUMBER"
+                sh "docker push harjay88/cilistbe-stg:$BUILD_NUMBER"
                 }
                 else
                 { 
-                sh "docker build -t harjay88//cilist:master-$BUILD_NUMBER . "
-                sh "docker push harjay88/cilist:master-$BUILD_NUMBER"}
+                sh "docker build -t harjay88/cilistfe-prod:$BUILD_NUMBER frontend/. "
+                sh "docker build -t harjay88/cilistbe-prod:$BUILD_NUMBER backend/. "
+                sh "docker push harjay88/cilistfe-prod:$BUILD_NUMBER"
+                sh "docker push harjay88/cilistbe-prod:$BUILD_NUMBER"
                 }
               }
             }
@@ -43,15 +47,19 @@ pipeline {
                 
                 echo "Begin to Deploy" 
 
-                if (env.BRANCH_NAME == "development")
+                if (env.BRANCH_NAME == "stagging")
                 {
-                sh "kubectl set image deployment/cilist cilist=harjay88/cilist:stg-$BUILD_NUMBER -n stg-app-cilist"
-                sh "docker image rmi harjay88/landingpage:dev-$BUILD_NUMBER"
+                sh "kubectl set image deployment/cilistfe cilistfe=harjay88/cilistfe-stg:$BUILD_NUMBER -n stagging"
+                sh "kubectl set image deployment/cilistbe cilistbe=harjay88/cilistbe-stg:$BUILD_NUMBER -n stagging"
+                sh "docker image rmi harjay88/cilistfe-stg:$BUILD_NUMBER"
+                sh "docker image rmi harjay88/cilistbe-stg:$BUILD_NUMBER"
                 }
                 else
                 {
-                sh "kubectl set image deployment/cilist cilist=harjay88/cilist:master-$BUILD_NUMBER -n prd-app-cilist"
-                sh "docker image rmi harjay88/cilist:master-$BUILD_NUMBER"
+                sh "kubectl set image deployment/cilistfe cilistfe=harjay88/cilistfe-prod:$BUILD_NUMBER -n production"
+                sh "kubectl set image deployment/cilistbe cilistbe=harjay88/cilistbe-prod:$BUILD_NUMBER -n production"
+                sh "docker image rmi harjay88/cilistfe-prod:$BUILD_NUMBER"
+                sh "docker image rmi harjay88/cilistbe-prod:$BUILD_NUMBER"
                 }
               }
             }
