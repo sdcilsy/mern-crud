@@ -1,6 +1,6 @@
 replicas: 2
-nameFrontend: cilistfe
-nameBackend: cilistbe
+nameFrontend: cilistfeprod
+nameBackend: cilistbeprod
 imageFrontend: harjay88/cilistfe-prod:latest
 imageBackend: harjay88/cilistbe-prod:latest
 portFrontend: 3000

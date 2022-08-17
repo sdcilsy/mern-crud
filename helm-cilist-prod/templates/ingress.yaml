@@ -10,7 +10,7 @@ metadata:
     kubernetes.io/ingress.class: nginx
     kubernetes.io/ingress.allow-http: "false"
 spec:
-  #ingressClassName: nginx-frontend
+  ingressClassName: nginx-frontend
   rules:
     - host: {{ .Values.hostFrontend}}
       http:
@@ -22,10 +22,7 @@ spec:
                 name: {{ .Values.nameFrontend}}
                 port:
                   number: 80
-  tls:
-    - secretName: test-tls
-      hosts:
-      - {{ .Values.hostFrontend}}
+
 ---
 apiVersion: networking.k8s.io/v1
 kind: Ingress
@@ -39,7 +36,7 @@ metadata:
     kubernetes.io/ingress.class: nginx
     kubernetes.io/ingress.allow-http: "false"
 spec:
-  #ingressClassName: nginx-backend
+  ingressClassName: nginx-backend
   rules:
     - host: {{ .Values.hostBackend}}
       http:
@@ -51,7 +48,3 @@ spec:
                 name: {{ .Values.nameBackend}}
                 port:
                   number: 80
-  tls:
-    - secretName: test-tls
-      hosts:
-      - {{ .Values.hostBackend}}
