@@ -19,7 +19,7 @@ spec:
           image: {{ .Values.imageFrontend}}
           env:
           - name: {{ .Values.envfe }}
-            value: {{ .Values.hostFrontend }}
+            value: "http://cilist-be.teamtss.xyz"
 ---
 apiVersion: apps/v1
 kind: Deployment 
