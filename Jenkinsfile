@@ -4,14 +4,7 @@ pipeline {
     stages {
         stage('Testing') {
         agent { label "agent" } // Define which agent you want to run the pipeline
-            steps {
-              // Test menggunakan Sonarqube
-                script { 
-                echo "Begin Testing Using Sonarqube"
-                def scannerHome = tool 'sonarqube' ; //sonarqube by Global Tools Configuration
-                withSonarQubeEnv('sonarqube') {  //sonarqube by Endpoint Server Sonarqube
-                sh "${scannerHome}/bin/sonar-scanner"}
-                } 
+          
               }
             }
         stage('Build') {
