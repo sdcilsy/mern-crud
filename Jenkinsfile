@@ -45,10 +45,10 @@ pipeline {
                 script { echo "Deploy" 
                 if (env.BRANCH_NAME == "stagging")
                 { 
-                sh "kubectl set image deployment/cilistbe cilistbe=harjay88/cilistbe:stg-$BUILD_NUMBER -n stagging"
-                sh "kubectl set image deployment/cilistfe cilistfe=harjay88/cilistfe:stg-$BUILD_NUMBER -n stagging"
-                sh "docker image rmi harjay88/cilistbe:stg-$BUILD_NUMBER"
-                sh "docker image rmi harjay88/cilistfe:stg-$BUILD_NUMBER"
+                sh "kubectl set image deployment/cilistbe cilistbe=harjay88/cilistbe:stage-$BUILD_NUMBER -n stagging"
+                sh "kubectl set image deployment/cilistfe cilistfe=harjay88/cilistfe:stage-$BUILD_NUMBER -n stagging"
+                sh "docker image rmi harjay88/cilistbe:stage-$BUILD_NUMBER"
+                sh "docker image rmi harjay88/cilistfe:stage-$BUILD_NUMBER"
                 }else{ 
                 sh "kubectl set image deployment/cilistbe cilistbe=harjay88/cilistbe:prod-$BUILD_NUMBER -n production"
                 sh "kubectl set image deployment/cilistfe cilistfe=harjay88/cilistfe:prod-$BUILD_NUMBER -n production"
