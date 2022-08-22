@@ -35,7 +35,7 @@ const UserList = () => {
   return (
     <div className="columns mt-5 is-centered">
       <div className="column is-half">
-        <Banner title="Users List PDDB Jakarta" />
+        <Banner title="Users List PDDB JKT" />
         <Link to={`add`} className="button is-info">
           Add New
         </Link>
