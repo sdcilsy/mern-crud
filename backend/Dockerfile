@@ -12,4 +12,4 @@ RUN chmod +x wait-for-it.sh
 
 EXPOSE 5000
 
-# CMD [ "npm", "start" ]
+CMD [ "npm", "start" ]

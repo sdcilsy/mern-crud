@@ -14,7 +14,7 @@ services:
       - "5000:5000"
     depends_on:
       - database
-    command: [ "./wait-for-it.sh", "database:3306", "--timeout=50", "--", "npm", "start" ]
+    # command: [ "./wait-for-it.sh", "database:3306", "--timeout=50", "--", "npm", "start" ]
   
   frontend:
     build:
