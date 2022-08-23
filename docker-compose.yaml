@@ -1,7 +1,7 @@
 version: '3.8'
 
 services:
-  db:
+  database:
     build:
       context: ./database
       dockerfile: Dockerfile
@@ -13,8 +13,8 @@ services:
     ports:
       - "5000:5000"
     depends_on:
-      - db
-    command: [ "./wait-for-it.sh", "db:3306", "--timeout=50", "--", "npm", "start" ]
+      - database
+    command: [ "./wait-for-it.sh", "database:3306", "--timeout=50", "--", "npm", "start" ]
   
   frontend:
     build:
