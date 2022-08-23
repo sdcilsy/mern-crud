@@ -18,7 +18,7 @@ const EditUser = () => {
   const updateUser = async (e) => {
     e.preventDefault();
     try {
-      await axios.patch(`http://backend:5000/users/${id}`, {
+      await axios.patch(`http://backend/users/${id}`, {
         name,
         email,
         gender,
@@ -30,7 +30,7 @@ const EditUser = () => {
   };
 
   const getUserById = async () => {
-    const response = await axios.get(`http://backend:5000/users/${id}`);
+    const response = await axios.get(`http://backend/users/${id}`);
     setName(response.data.name);
     setEmail(response.data.email);
     setGender(response.data.gender);
