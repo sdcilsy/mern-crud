@@ -3,6 +3,8 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import Banner from "./Banner";
 
+const {REACT_APP_BACKEND_BASE_URL} = process.env;
+
 const UserList = () => {
   const [users, setUser] = useState([]);
 
@@ -17,13 +19,13 @@ const UserList = () => {
 
 
   const getUsers = async () => {
-    const response = await axios.get("http://localhost:5000/users");
+    const response = await axios.get(`${REACT_APP_BACKEND_BASE_URL}/users`);
     setUser(response.data);
   };
 
   const deleteUser = async (id) => {
     try {
-      await axios.delete(`http://localhost:5000/users/${id}`);
+      await axios.delete(`${REACT_APP_BACKEND_BASE_URL}/users/${id}`);
       getUsers();
     } catch (error) {
       console.log(error);
@@ -33,7 +35,7 @@ const UserList = () => {
   return (
     <div className="columns mt-5 is-centered">
       <div className="column is-half">
-        <Banner title="Users List" />
+        <Banner title="Users List PDDB-JKT48" />
         <Link to={`add`} className="button is-info">
           Add New
         </Link>

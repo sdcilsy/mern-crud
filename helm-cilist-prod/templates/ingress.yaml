@@ -1,0 +1,49 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: aws-ingress-frontend
+  namespace: {{ .Values.namespace }}
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /$1
+    nginx.ingress.kubernetes.io/proxy-send-timeout: "300"
+    nginx.ingress.kubernetes.io/proxy-read-timeout: "300"    
+    kubernetes.io/ingress.class: nginx
+    kubernetes.io/ingress.allow-http: "true"
+spec:
+  ingressClassName: nginx-frontend
+  rules:
+    - host: {{ .Values.hostFrontend}}
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: {{ .Values.nameFrontend}}
+                port:
+                  number: 80
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: aws-ingress-backend
+  namespace: {{ .Values.namespace }}
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /$1
+    nginx.ingress.kubernetes.io/proxy-send-timeout: "300"
+    nginx.ingress.kubernetes.io/proxy-read-timeout: "300"   
+    kubernetes.io/ingress.class: nginx
+    kubernetes.io/ingress.allow-http: "true"
+spec:
+  ingressClassName: nginx-backend
+  rules:
+    - host: {{ .Values.hostBackend}}
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: {{ .Values.nameBackend}}
+                port:
+                  number: 80

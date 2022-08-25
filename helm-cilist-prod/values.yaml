@@ -1,0 +1,13 @@
+replicas: 2
+nameFrontend: cilistfeprod
+nameBackend: cilistbeprod
+imageFrontend: harjay88/cilistfe-prod:1.0
+imageBackend: harjay88/cilistbe-prod:1.0
+portFrontend: 3000
+portBackend: 5000
+namespace: production
+hostFrontend: cilist.teamtss.xyz
+hostBackend: cilist-be.teamtss.xyz
+envfe: "REACT_APP_BACKEND_BASE_URL"
+envbe: "REACT_APP_DATABASE_HOST"
+envBeValue: db-cilist-production-instance-1.c8f96mnl8d4y.ap-southeast-1.rds.amazonaws.com

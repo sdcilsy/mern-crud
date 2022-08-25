@@ -1,0 +1,32 @@
+version: '3.8'
+
+services:
+  db:
+    build:
+      context: ./database
+      dockerfile: Dockerfile
+    healthcheck:
+            test: "mysql $$MYSQL_DATABASE -u$$MYSQL_USER -p$$MYSQL_PASSWORD -e 'SELECT 1;'"
+            timeout: 20s
+            retries: 120
+
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    environment:
+      REACT_APP_DATABASE_HOST: db
+    ports:
+      - "5000:5000"
+    depends_on:
+      db:
+        condition: service_healthy
+  
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    environment:
+      REACT_APP_BACKEND_BASE_URL: http://localhost:5000
+    ports:
+      - "3000:3000"
