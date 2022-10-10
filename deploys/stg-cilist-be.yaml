@@ -1,0 +1,36 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: cilist-be
+  namespace: staging
+spec:
+  selector:
+    app: cilist-be
+  ports:
+  - port: 5000
+    targetPort: 5000
+  type: ClusterIP
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cilist-be
+  namespace: staging
+spec:
+  selector:
+    matchLabels:
+      app: cilist-be
+  template:
+    metadata:
+      labels:
+        app: cilist-be
+    spec:
+      containers:
+      - name: cilist-be
+        image: fataraz/cilist-be:v1
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+        ports:
+        - containerPort: 5000
