@@ -10,7 +10,7 @@ COPY package*.json ./
 RUN npm install
 
 # Copies everything over to Docker environment
-COPY . ./
+COPY frontend/ ./
 
 RUN npm run build
 
