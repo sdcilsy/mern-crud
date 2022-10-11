@@ -35,11 +35,11 @@ spec:
             cpu: "1000m"
         ports:
         - containerPort: 80
-        volumeMounts:
-          - mountPath: /app/.env
-            name: cm-cilist-fe
-            subPath: .env
-      volumes:
-        - name: cm-cilist-fe
-          configMap:
-            name: configmap-cilist-fe
+      #   volumeMounts:
+      #     - mountPath: /app/.env
+      #       name: cm-cilist-fe
+      #       subPath: .env
+      # volumes:
+      #   - name: cm-cilist-fe
+      #     configMap:
+      #       name: configmap-cilist-fe
