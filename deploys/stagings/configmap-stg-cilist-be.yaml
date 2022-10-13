@@ -4,7 +4,7 @@ metadata:
   name: configmap-stg-cilist-be
   namespace: staging
   labels:
-    app: cilist-be
+    app: stg-cilist-be
 data:
   .env: |
     BASE_URL_PORT=5000
