@@ -2,7 +2,7 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: ingress-cilist-be
-  namespace: production
+  namespace: staging
   annotations:
     nginx.ingress.kubernetes.io/configuration-snippet: |
       more_set_headers "server: hide";
