@@ -1,8 +1,8 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: ingress-stg-cilist-be
-  namespace: staging
+  name: ingress-cilist-be
+  namespace: production
   annotations:
     nginx.ingress.kubernetes.io/configuration-snippet: |
       more_set_headers "server: hide";
@@ -18,8 +18,6 @@ metadata:
     nginx.ingress.kubernetes.io/proxy-connect-timeout: "600"
     nginx.ingress.kubernetes.io/proxy-read-timeout: "600"
     nginx.ingress.kubernetes.io/proxy-send-timeout: "600"
-#    service.beta.kubernetes.io/aws-load-balancer-ssl-cert: arn:aws:acm:ap-southeast-1:389364182454:certificate/b9d1f89d-b3e6-48c4-9741-4c7a6754a48e
-#    nginx.ingress.kubernetes.io/aws-load-balancer-ssl-cert: arn:aws:acm:ap-southeast-1:389364182454:certificate/b9d1f89d-b3e6-48c4-9741-4c7a6754a48e
 spec:
   ingressClassName: nginx
   rules:
@@ -36,4 +34,4 @@ spec:
   tls:
     - hosts:
         - stg-cilist-be.raziffk.my.id
-      secretName: wildcard-fataraz
+      secretName: wildcard-cilist
