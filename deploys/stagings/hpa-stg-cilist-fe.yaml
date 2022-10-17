@@ -1,7 +1,7 @@
 apiVersion: autoscaling/v1
 kind: HorizontalPodAutoscaler
 metadata:
- name: hpa-stg-cilist-be
+ name: hpa-stg-cilist-fe
  namespace: staging
 spec:
  scaleTargetRef:
