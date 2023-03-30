@@ -1,0 +1,42 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: cilist-fe-config
+data:
+    REACT_APP_BACKEND_URL: http://10.43.100.1:90 
+  
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cilist-fe
+spec:
+  selector:
+    matchLabels:
+      app: cilist-fe
+  template:
+    metadata:
+      labels:
+        app: cilist-fe
+    spec:
+      containers:
+      - name: cilist-fe
+        image: dzikrihuda/cilist-frontend:v1
+        ports:
+        - containerPort: 3000
+        envFrom:
+        - configMapRef:
+           name: cilist-fe-config
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: cilist-fe-svc
+spec:
+  selector:
+    app: cilist-fe
+  ports:
+  - port: 91
+    targetPort: 3000
+
