@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ .Values.manifest.svc }}
+spec:
+  selector:
+    app: {{ .Values.manifest.front }}
+  ports:
+  - port: {{ .Values.data.port }}
+    targetPort: {{ .Values.data.feport }}
+

@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Values.manifest.lp }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: {{ .Values.manifest.lp }}
+  strategy: {}
+  template:
+      metadata:
+        labels:
+          app: {{ .Values.manifest.lp }}
+      spec:
+       containers:
+       - image: "{{ .Values.image.lp }}:{{ .Values.image.tag }}"
+         name: {{ .Values.data.cont }}
+         ports:
+         - containerPort: {{ .Values.data.port }}
+         resources: {}
+status: {}
+

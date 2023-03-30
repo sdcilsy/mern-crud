@@ -1,0 +1,34 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Values.manifest.who }}
+  labels:
+    app: {{ .Values.manifest.who }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: {{ .Values.manifest.who }}
+  template:
+    metadata:
+      labels:
+        app: {{ .Values.manifest.who }}
+    spec:
+      containers:
+        - name: {{ .Values.manifest.who }}
+          image: {{ .Values.image.who }}
+          ports:
+            - name: {{ .Values.data.end }}
+              containerPort: {{ .Values.data.port }}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ .Values.manifest.who }}
+spec:
+  ports:
+    - name: {{ .Values.data.end }}
+      port: {{ .Values.data.port }}
+      targetPort: {{ .Values.data.end }}
+  selector:
+    app: {{ .Values.manifest.who }}

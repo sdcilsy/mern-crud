@@ -1,0 +1,41 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: {{ .Values.manifest.trfk }}
+spec:
+  rules:
+  - host: {{ .Values.host.lp }}
+    http:
+      paths:
+      - path: /
+        pathType: {{ .Values.data.path }}
+        backend:
+          service:
+            name: {{ .Values.serpis.lp }}
+            port:
+              number: {{ .Values.data.port }}
+
+  - host: {{ .Values.host.cil }}
+    http:
+      paths:
+      - path: /
+        pathType: {{ .Values.data.path }}
+        backend:
+          service:
+            name: {{ .Values.manifest.svc }}
+            port:
+              number: {{ .Values.data.port }}
+
+  - host: {{ .Values.host.who }}
+    http:
+      paths:
+      - path: /
+        pathType: {{ .Values.data.path }}
+        backend:
+          service:
+            name: {{ .Values.serpis.who }}
+            port:
+              number: {{ .Values.data.port }}
+
+
+

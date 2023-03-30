@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Values.manifest.front }}
+spec:
+  selector:
+    matchLabels:
+      app: {{ .Values.manifest.front }}
+  template:
+    metadata:
+      labels:
+        app: {{ .Values.manifest.front }}
+    spec:
+      containers:
+      - name: {{ .Values.manifest.front }}
+        image: "{{ .Values.image.rpfront }}:{{ .Values.image.tag }}"
+        ports:
+        - containerPort: {{ .Values.data.feport }}
+        envFrom:
+          - configMapRef: 
+              name: {{ .Values.manifest.cfront }}
