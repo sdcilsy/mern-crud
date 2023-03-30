@@ -16,7 +16,7 @@ Next, Deploy it with Helm to "devops" namespace!
  
  *note: "chill" is my Helm Chart for Cilist Development, as Cilist Web Development and Ingress applied in it*
  
- #Landing Page with Whoami
+ # Landing Page & Whoami
  Next, go to the other folder "Who" and Deploy with Helm with "lolwho" as Helm Chart, But dont forget to deploy in "devops" namespace..
  
  `Helm install lolwho . -n devops`
