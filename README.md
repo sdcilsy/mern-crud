@@ -5,5 +5,5 @@
 # "terraform apply"
 3. So we got the EC2 Instance IP for React App Backend URL and RDS Endpoint for DB Host.
 4. Apply it in Depok and Sydney yml files.
-5. then Run Ansible with Running Command:
+5. Then Run Ansible with Running Command:
 # "ansible-playbook -i hosts main.yml"
