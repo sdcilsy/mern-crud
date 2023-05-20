@@ -8,7 +8,11 @@ services:
       DATABASE_USERNAME: "people"
       DATABASE_PASSWORD: "people402"
       DATABASE_DATABASE: "people" 
+<<<<<<< HEAD:Ansible/roles/Install Docker/templates/depok.yml
       DATABASE_HOST: "RDS ENDPOINT"
+=======
+      DATABASE_HOST: "endpoint-rds"
+>>>>>>> 311922c9805ccb7ea15066cbfca5d8a4ecb81a5e:Ansible/Kompose/back.yml
       DATABASE_PORT: 3306
       BASE_URL_PORT: 5000
 

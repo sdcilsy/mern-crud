@@ -11,8 +11,13 @@ terraform {
 #AWS EC2
 provider "aws" {
   region     = "ap-southeast-2"
+<<<<<<< HEAD
   access_key = "ACCESS KEY"
   secret_key = "SECRET KEY"
+=======
+  access_key = "?????"
+  secret_key = "????"
+>>>>>>> 311922c9805ccb7ea15066cbfca5d8a4ecb81a5e
 }
 
 resource "aws_security_group" "allow_tls" {
