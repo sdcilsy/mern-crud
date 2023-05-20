@@ -11,8 +11,8 @@ terraform {
 #AWS EC2
 provider "aws" {
   region     = "ap-southeast-2"
-  access_key = "AKIAXECYDJQY6TKDE36R"
-  secret_key = "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"
+  access_key = "ACCESS KEY"
+  secret_key = "SECRET KEY"
 }
 
 resource "aws_security_group" "allow_tls" {
@@ -41,7 +41,7 @@ resource "aws_security_group" "allow_tls" {
 
 #Instance
 resource "aws_instance" "cilsy" {
-  ami           = "ami-05f998315cca9bfe3" 
+  ami           = "AMI-ID" 
   instance_type = "t2.micro"  
   key_name      = "sydney-03"
   vpc_security_group_ids = [aws_security_group.allow_tls.id]

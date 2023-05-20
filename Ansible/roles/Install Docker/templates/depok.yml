@@ -8,7 +8,7 @@ services:
       DATABASE_USERNAME: "people"
       DATABASE_PASSWORD: "people402"
       DATABASE_DATABASE: "people" 
-      DATABASE_HOST: "terraform-20230517135759612600000001.cyvxmusxt9s8.ap-southeast-2.rds.amazonaws.com"
+      DATABASE_HOST: "RDS ENDPOINT"
       DATABASE_PORT: 3306
       BASE_URL_PORT: 5000
 
