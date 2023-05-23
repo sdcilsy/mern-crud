@@ -29,9 +29,8 @@ Next, Deploy it with Helm to "devops" namespace!
  
  *note: qhv8s is my traefik pods*
  
- # Route 53
- 
- After you got the external ip from Traefik pods, Simply copy-paste it to the Route 53 as endpoint to traffic route with different record name as this deployment contains 3 web deployment (Cilist, Landing Page and Whoami)
+ # After you got the External IP from Traefik Service, 
+ Simply copy-paste it to the Route 53 as Endpoint to traffic route with different record name as this deployment contains 3 web deployment (Cilist, Landing Page and Whoami)
  
  # Final Step
  
