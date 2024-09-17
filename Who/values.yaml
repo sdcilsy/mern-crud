@@ -1,0 +1,21 @@
+replicaCount: 1
+
+image:
+  lp: ikanpaus/landingpage 
+  who: traefik/whoami
+  tag: "v4"
+
+serpis:
+  lp: lpserpis 
+
+manifest:
+  lp: lp
+  who: whoami
+
+pro:
+  tocol: TCP
+
+data:
+  port: 80
+  cont: landing-page
+  end: web

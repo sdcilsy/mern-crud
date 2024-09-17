@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ .Values.manifest.cmapbe }}
+data:
+  DATABASE_USERNAME: {{ .Values.data.user }}
+  DATABASE_PASSWORD: {{ .Values.data.pass }}
+  DATABASE_DATABASE: {{ .Values.data.debe }}
+  DATABASE_HOST: {{ .Values.data.host }}
+  DATABASE_PORT: "{{ .Values.data.dbport }}"
+  BASE_URL_PORT: "{{ .Values.data.baseport }}"

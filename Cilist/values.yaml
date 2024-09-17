@@ -1,0 +1,43 @@
+replicaCount: 1
+
+image:
+  rpback: ikanpaus/backend
+  rpfront: ikanpaus/frontend
+  tag: "v1"
+
+host:
+  cil: cilist.pisang.my.id 
+  lp: lp.pisang.my.id 
+  who: who.pisang.my.id 
+
+serpis:
+  svc: LoadBalancer
+  lp: lpserpis 
+  who: whoami 
+
+manifest:
+  back: backend
+  front: deployfe
+  cmapbe: cmap 
+  cfront: cmapfe
+  svc: serpisfe
+  ing: ingressfe
+  trfk: traefik-gateway
+
+data:
+  user: admin
+  pass: Cilsy2023
+  debe: people
+  host: amazon-whale.cyvxmusxt9s8.ap-southeast-2.rds.amazonaws.com
+  path: Prefix
+  port: 80
+  dbport: 3306
+  baseport: 5000
+  feport: 3000
+  url: "http://a71eaee9189c94662b3e8f30cf92f8f9-94864460.ap-southeast-2.elb.amazonaws.com:5000"
+
+
+
+
+
+

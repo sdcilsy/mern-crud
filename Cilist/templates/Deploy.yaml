@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Values.manifest.back }}
+spec:
+  selector:
+    matchLabels:
+      app: {{ .Values.manifest.back }}
+  template:
+    metadata:
+      labels:
+        app: {{ .Values.manifest.back }}
+    spec:
+      containers:
+      - name: {{ .Values.manifest.back }}
+        image: "{{ .Values.image.rpback }}:{{ .Values.image.tag }}"
+        ports:
+        - containerPort: {{ .Values.data.port }}
+        envFrom:
+          - configMapRef: 
+              name: {{ .Values.manifest.cmapbe }}
+        resources:

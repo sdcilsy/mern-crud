@@ -1,81 +1,37 @@
-# Cilist
-Simple CRUD app built with MySQL, ExpressJS, React, & Node.
+# First Step
+Deploy Backend Service from Cilist folder first with "devops" as namespace,
 
-`Database    : MySQL`
+ `kubectl apply -f Serpis.yaml -n devops --create-namespace`
+ 
+ then check that Service with
+ 
+ `kubectl get all -n devops`
+ 
+ After you got the elb aws link from that service, Simply copy-paste it to the template/values.yaml in data-url and save!
+ 
+# Helm Deployment
+Next, Deploy it with Helm to "devops" namespace!
 
-`Backend     : localhost:5000`
-
-`Frontend    : localhost:3000`
-
-# Setup
-
-## Database
-First you need to create database & user in MySQL in order to connect `Backend` to `Database`.
-
-```
-sudo mysql -u root -p
-```
-
-```
-create database people;
-```
-```
-create user people identified by 'people';
-```
-```
-grant all privileges on people.* to people;
-```
-Then all you have to do now is restore database using this command
-```
-mysql -u people -p people < database/crud_db.sql
-```
-
-## Backend
-
-Create .env file. Configure with appropriate value.
-
-```
-cd backend
-```
-```
-cp .env.example .env
-```
-
-Simply install all dependencies then start the app.
-```
-npm install
-```
-And you can start with this command. You'll see the server is running on port `5000`
-```
-npm start
-```
-
-## Frontend
-
-Create .env file. Configure with appropriate value.
-
-```
-cd frontend
-```
-```
-cp .env.example .env
-```
-
-Because this is a React app, you can install all dependencies.
-```
-npm install
-```
-Then start the app. You'll see the app is running on port `3000`
-```
-npm start
-```
-
-# Credit
-
-All credit goes to [M. Fikri](https://www.youtube.com/watch?v=es9_6RFR7wk&t=3336s) as creator of this app.
-
-App used:
-
-[Frontend](https://github.com/mfikricom/Frontend-React-MySQL)
-
-[Backend](https://github.com/mfikricom/Backend-API-Express-MySQL)
+ `Helm install chill . -n devops` 
+ 
+ *note: "chill" is my Helm Chart for Cilist Development, as Cilist Web Development and Ingress applied in it*
+ 
+ # Landing Page & Whoami
+ Next, go to the other folder "Who" and Deploy with Helm with "lolwho" as Helm Chart, But dont forget to deploy in "devops" namespace..
+ 
+ `Helm install lolwho . -n devops`
+ 
+ # Traefik
+ 
+ add Traefik repo from Helm and Deploy its chart, So you will got the elb link later, after that do a port forward!
+ 
+ `kubectl port-forward (traefik-586b8d6d48-qhv8s) 9000:9000`
+ 
+ *note: qhv8s is my traefik pods*
+ 
+ # After you got the External IP from Traefik Service, 
+ Simply copy-paste it to the Route 53 as Endpoint to traffic route with different record name as this deployment contains 3 web deployment (Cilist, Landing Page and Whoami)
+ 
+ # Final Step
+ 
+ Check all the web that you have deployed and good luck :)

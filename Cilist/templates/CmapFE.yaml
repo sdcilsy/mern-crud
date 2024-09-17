@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ .Values.manifest.cfront }}
+data:
+  REACT_APP_BACKEND_URL: {{ .Values.data.url }}
+
+
+
+
+
+
